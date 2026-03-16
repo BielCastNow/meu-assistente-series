@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from maratonas import AssistenteMaratonas  # Importando sua classe
+from maratonas import AssistenteMaratonas  
 
 app = Flask(__name__)
 assistente = AssistenteMaratonas()
