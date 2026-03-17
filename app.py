@@ -1,18 +1,16 @@
 from flask import Flask, jsonify
-from maratonas import AssistenteMaratonas  
+from assistente import AssistenteMaratona
 
 app = Flask(__name__)
-assistente = AssistenteMaratonas()
 
-@app.route('/')
-def maratonar():
-    series = ["Stranger Things", "Naruto", "Round 6"]
-    resultado = assistente.buscar_lista(series)
-    return jsonify(resultado)
+assistente = AssistenteMaratona()
 
-@app.route('/teste')
-def teste():
-    return "O servidor está vivo!"
+@app.route("/series")
+def listar_series():
+    minha_lista = ["Breaking Bad", "Round 6", "SerieQueNaoExiste"]
+    resultados = [assistente.buscar_serie(serie) for serie in minha_lista]
 
-if __name__ == '__main__':
+    return jsonify(resultados)
+
+if __name__ == "__main__":
     app.run(debug=True)
